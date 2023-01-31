@@ -6,7 +6,7 @@
   
   body{
   
-      background-color: #db1515;
+      background-color: #353434;
   }
   
   header .overlay {
@@ -201,7 +201,7 @@
     }
   
     .slick-prev:before, .slick-next:before {
-      color: rgb(233, 15, 15);
+      color: rgb(44, 44, 44);
   }
   
   .slick-next:before {
@@ -322,5 +322,5 @@
   
   .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #fbfbfb;
-    background-color: #fd021a;
+    background-color: #0f0f0f;
   }

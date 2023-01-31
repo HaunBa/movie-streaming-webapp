@@ -52,14 +52,6 @@ header {
     }
   }
   
-  
-  .header {
-      background: url('../movie albums/the witcher/the-witche.jpg') red no-repeat center   ;
-      background-size: cover;
-    }
-   
-  
-  
   .nav-img{
   
       max-width: 110px;
@@ -131,15 +123,9 @@ header {
   
       .slick-prev:before,
       .slick-next:before {
-        color: rgb(233, 15, 15);
+        color: rgb(54, 53, 53);
       }
-  
-  
       
-    
-  
-  
-  
       html {
        scroll-behavior: smooth;
   }
@@ -151,7 +137,7 @@ header {
   }
    h1 {
        font-family: Arial;
-       color: red;
+       color: rgb(22, 22, 22);
        text-align: center;
   }
    .wrapper {
@@ -197,7 +183,7 @@ header {
     }
   
     .slick-prev:before, .slick-next:before {
-      color: rgb(233, 15, 15);
+      color: rgb(44, 44, 44);
   }
   
   .slick-next:before {
