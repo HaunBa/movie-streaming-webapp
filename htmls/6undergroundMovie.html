@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/videos.css" />
+    <title>Titel</title>
+  </head>
+  <body>
+    <button id="back" onclick="Back()" style="position: absolute">Back</button>
+    <div class="video-container">
+      <video
+        id="video"
+        onloadeddata="loadedVideo()"
+        src="..\english-trailers\6underground.mp4"
+      ></video>
+    </div>
+    <div>
+      <input
+        class="duration-slider"
+        id="duration"
+        type="range"
+        min="0"
+        max="10000"
+        step="1.67"
+        value="0"
+        onchange="changeDuration(this.value)"
+      />
+    </div>
+    <div id="video-controls">
+      <button id="play-pause">Play</button>
+      <button id="10sec-bwd" onclick="VideoBwd()">10 sekunden zurück</button>
+      <button id="10sec-fwd" onclick="VideoFwd()">10 sekunden vorwärts</button>
+      <input
+        class="volume-slider"
+        id="volume"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        orient="vertical"
+        onchange="changeVolume(this.value)"
+      />
+      <button
+        id="fullscreen"
+        onclick="setFullscreen()"
+        style="position: absolute; bottom: 1px; right: 4%"
+      >
+        Fullscreen
+      </button>
+    </div>
+    <script>
+      const video = document.getElementById("video");
+      const playPauseButton = document.getElementById("play-pause");
+      const volume = document.getElementById("volume");
+      var duration = document.getElementById("duration");
+
+      function loadedVideo() {
+        const max = video.seekable.end(0);
+        duration.max = max;
+      }
+
+      function IsFullscreen() {
+        return document.fullscreenElement !== null;
+      }
+
+      function playPause() {
+        if (video.paused) {
+          video.play();
+          playPauseButton.textContent = "Pause";
+        } else {
+          video.pause();
+          playPauseButton.textContent = "Play";
+        }
+      }
+
+      video.addEventListener("click", () => playPause());
+      playPauseButton.addEventListener("click", () => playPause());
+
+      function changeVolume(volume) {
+        video.volume = volume;
+      }
+
+      function changeDuration(params) {}
+
+      function setFullscreen() {
+        switch (IsFullscreen()) {
+          case false:
+            enterFullscreen(document.documentElement);
+            break;
+          case true:
+            exitFullscreen();
+            break;
+        }
+      }
+
+      function enterFullscreen(element) {
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.msRequestFullscreen) {
+          // for IE11 (remove June 15, 2022)
+          element.msRequestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+          // iOS Safari
+          element.webkitRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+
+      function VideoFwd() {
+        let currentTime = video.currentTime;
+        if (currentTime >= video.seekable.end(0) - 10) {
+          video.currentTime = video.seekable.end(0);
+        } else {
+          video.currentTime += 10;
+        }
+      }
+
+      function VideoBwd() {
+        let currentTime = video.currentTime;
+        if (currentTime <= 10) {
+          video.currentTime = 0;
+        } else {
+          video.currentTime -= 10;
+        }
+      }
+
+      function Back() {
+        history.back();
+      }
+    </script>
+  </body>
+</html>
